@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>1899.12.30 00:00:00.000.058,=C:\Users\6ruse\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.421,E:\install\project\paloma\downloadImg\svn\uDownloadImg.pas=E:\install\project\paloma\downloadImg\svn\Unit1.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.541,=E:\install\project\paloma\downloadImg\svn\uDownloadImg.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.138,E:\install\project\paloma\downloadImg\svn\uMain.pas=C:\Users\6ruse\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.138,E:\install\project\paloma\downloadImg\svn\uMain.dfm=C:\Users\6ruse\Documents\Embarcadero\Studio\Projects\Unit1.dfm</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.034,=E:\install\project\paloma\downloadImg\svn\Unit1.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.164,E:\install\project\paloma\downloadImg\svn\ExampleDownloadImg.dproj=C:\Users\6ruse\Documents\Embarcadero\Studio\Projects\Project1.dproj</Transaction>
+    <Transaction>2019.07.28 22:33:42.757,E:\install\project\paloma\downloadImg\svn\uDownloadFile.pas=E:\install\project\paloma\downloadImg\svn\uDownloadImg.pas</Transaction>
+  </Transactions>
+</BorlandProject>
