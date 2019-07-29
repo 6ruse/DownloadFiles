@@ -28,7 +28,7 @@ object FrmExample: TFrmExample
     Width = 441
     Height = 21
     TabOrder = 0
-    Text = 'edtURL'
+    Text = 'https://yadi.sk/i/L6ve9v3HmBXRSg'
   end
   object edtSavePath: TEdit
     Left = 8
@@ -36,7 +36,7 @@ object FrmExample: TFrmExample
     Width = 441
     Height = 21
     TabOrder = 1
-    Text = 'edtSavePath'
+    Text = 'D:\tmp\!07-06-2016_10-04-34'
   end
   object btnDownload: TButton
     Left = 336
@@ -53,6 +53,5 @@ object FrmExample: TFrmExample
     Width = 441
     Height = 21
     TabOrder = 3
-    Text = 'edtSavePath'
   end
 end
