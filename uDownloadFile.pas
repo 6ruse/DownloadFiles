@@ -74,6 +74,11 @@ function TDownloadFile.DownloadImage: boolean;
 begin
 //скачать изображение с интернетов
   downloadFile := FileURL ;
+  if downloadFile = emptyStr then
+  begin
+    result := false ;
+    exit ;
+  end;
   response := Client.Get(downloadFile, Data);
   hd := response.GetHeaders;
   ResFileName := emptyStr ;
