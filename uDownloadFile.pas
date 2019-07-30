@@ -79,13 +79,27 @@ begin
     result := false ;
     exit ;
   end;
+
   response := Client.Get(downloadFile, Data);
-  hd := response.GetHeaders;
-  ResFileName := emptyStr ;
-  for i := 0 to High(hd) do
+
+  if ((FSaveFileName = emptyStr) AND (Pos('/yadi.sk/',FFileURL) > 0)) then
   begin
-    if UPPERCASE(hd[i].Name) = UPPERCASE(CNST_CD) then
-      ResFileName := copy(hd[i].Value,pos('''''',hd[i].Value)+4,length(hd[i].Value));
+    try
+      hd := response.GetHeaders;
+      ResFileName := emptyStr ;
+      for i := 0 to High(hd) do
+      begin
+        if UPPERCASE(hd[i].Name) = UPPERCASE(CNST_CD) then
+          ResFileName := copy(hd[i].Value,pos('''''',hd[i].Value)+4,length(hd[i].Value));
+      end;
+      if ResFileName <> emptyStr then
+        SaveFileName := ResFileName ;
+    except on E : Exception do
+    begin
+      result := false ;
+      exit ;
+    end;
+    end;
   end;
 
   if response.StatusCode <> 200 then
@@ -93,10 +107,6 @@ begin
     result := false ;
     exit ;
   end;
-
-  if ((FSaveFileName = emptyStr) AND (Pos('/yadi.sk/',FFileURL) > 0)) then
-    SaveFileName := ResFileName ;
-
 
   saveFile := SavePath + SaveFileName ;
   try
