@@ -1,11 +1,13 @@
-unit uMain;
+п»їunit uMain;
 
 interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls
-  ,uDownloadFile
+  ,uDownloadFile, System.Net.URLClient, System.Net.HttpClient,
+  System.Net.HttpClientComponent, Data.Bind.Components, Data.Bind.ObjectScope,
+  REST.Client
   ;
 
 type
@@ -15,6 +17,7 @@ type
     btnDownload: TButton;
     edtFileName: TEdit;
     lblStatus: TLabel;
+    Button1: TButton;
     procedure btnDownloadClick(Sender: TObject);
   private
     { Private declarations }
@@ -38,10 +41,9 @@ begin
   DownloadFile.SavePath := edtSavePath.Text ;
   DownloadFile.SaveFileName := edtFileName.Text ;
   if DownloadFile.DownloadImage then
-    lblStatus.Caption := 'скачал успешно'
+    lblStatus.Caption := 'СЃРєР°С‡Р°Р» СѓСЃРїРµС€РЅРѕ'
   else
-    lblStatus.Caption := 'загрузка не удалась';
-
+    lblStatus.Caption := 'Р·Р°РіСЂСѓР·РєР° РЅРµ СѓРґР°Р»Р°СЃСЊ';
 end;
 
 end.

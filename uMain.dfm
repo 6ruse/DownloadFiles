@@ -36,7 +36,7 @@ object FrmExample: TFrmExample
     Width = 441
     Height = 21
     TabOrder = 1
-    Text = 'D:\tmp\!07-06-2016_10-04-34'
+    Text = 'E:\tmp\1'
   end
   object btnDownload: TButton
     Left = 336
@@ -53,5 +53,13 @@ object FrmExample: TFrmExample
     Width = 441
     Height = 21
     TabOrder = 3
+  end
+  object Button1: TButton
+    Left = 184
+    Top = 106
+    Width = 75
+    Height = 25
+    Caption = 'Button1'
+    TabOrder = 4
   end
 end

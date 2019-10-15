@@ -62,15 +62,19 @@ end;
 
 function TDownloadFile.DownloadImage: boolean;
   const
-    CNST_CD = 'content-disposition';
-
+    CNST_CD2 = 'content-disposition';
+    CNST_CD = 'Location';
   var
     saveFile : string ;
     response: IHTTPResponse;
+    response2: IHTTPResponse;
     downloadFile : string ;
     ResFileName : string ;
     hd:TNetHeaders;
-    i: integer ;
+    hd2:TNetHeaders;
+    i,j: integer ;
+    Header    : TNetHeader     ;
+    Headers   : TNetHeaders    ;
 begin
 //скачать изображение с интернетов
   downloadFile := FileURL ;
@@ -80,17 +84,35 @@ begin
     exit ;
   end;
 
-  response := Client.Get(downloadFile, Data);
+  Header := TNetHeader.Create('Content-Type', 'application/x-www-form-urlencoded');
+  Headers := Headers + [Header];
+
+  Client.ConnectionTimeout:=1500;
+  Client.ResponseTimeout:=1500;
+  Client.HandleRedirects:=false;
+  Client.AllowCookies:=True;
+  response := Client.Get(downloadFile, Data, Headers);
 
   if ((FSaveFileName = emptyStr) AND (Pos('/yadi.sk/',FFileURL) > 0)) then
   begin
     try
       hd := response.GetHeaders;
+
       ResFileName := emptyStr ;
       for i := 0 to High(hd) do
       begin
         if UPPERCASE(hd[i].Name) = UPPERCASE(CNST_CD) then
-          ResFileName := copy(hd[i].Value,pos('''''',hd[i].Value)+4,length(hd[i].Value));
+        begin
+          Data.clear ;
+          Client.HandleRedirects:=true;
+          response2 := Client.Get(hd[i].Value, Data, Headers);
+          hd2 := response2.GetHeaders;
+          for j := 0 to High(hd2) do
+          begin
+            if UPPERCASE(hd2[j].Name) = UPPERCASE(CNST_CD2) then
+              ResFileName := copy(hd2[j].Value,pos('''''',hd2[j].Value)+4,length(hd2[j].Value));
+          end;
+        end ;
       end;
       if ResFileName <> emptyStr then
         SaveFileName := ResFileName ;
@@ -101,8 +123,7 @@ begin
     end;
     end;
   end;
-
-  if response.StatusCode <> 200 then
+  if ((response.StatusCode <> 200) and (response2.StatusCode <> 200)) then
   begin
     result := false ;
     exit ;
